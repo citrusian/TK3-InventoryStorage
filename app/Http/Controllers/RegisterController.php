@@ -21,7 +21,11 @@ class RegisterController extends Controller
 //            Note: Using confirmed doesn't show error message at confirmation input field
             'password' => 'required|min:5|max:255',
             'confirm-password' => ['same:password'],
-            'terms' => 'required'
+            'terms' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'TTL' => 'required',
+            'gender' => 'required',
         ]);
         $user = User::create($attributes);
 

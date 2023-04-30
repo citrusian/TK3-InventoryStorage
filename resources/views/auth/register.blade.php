@@ -29,39 +29,128 @@
                             <form method="POST" action="{{ route('register.perform') }}">
                                 @csrf
                                 <div class="row">
-                                    <div class="flex flex-col mb-3">
-                                        <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Name" value="{{ old('username') }}" >
-                                        @error('username') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="username" class="form-control-label">Username</label>
+                                            <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Name" value="{{ old('username') }}" >
+                                            @error('username') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                        </div>
                                     </div>
-                                    <div class="flex flex-col mb-3">
-                                        <input type="email" name="email" class="form-control" placeholder="Email" aria-label="Email" value="{{ old('email') }}" >
-                                        @error('email') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email" class="form-control-label">Email address</label>
+                                            <input type="email" name="email" class="form-control" placeholder="Email" aria-label="Email" value="{{ old('email') }}" >
+                                            @error('email') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                        </div>
                                     </div>
-                                    <div class="flex flex-col mb-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="password" class="form-control-label">Password</label>
                                         <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password">
                                         @error('password') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                        </div>
                                     </div>
-                                    <div class="flex flex-col mb-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="confirm-password" class="form-control-label">Password Confirmation</label>
                                         <input type="password" name="confirm-password" class="form-control form-control-lg" placeholder="Password Confirmation" aria-label="Password"  >
                                         @error('confirm-password') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
+                                        </div>
                                     </div>
+{{--                                    ----------------------------}}
+                                    <hr class="horizontal dark">
 
-                                    <div class="flex flex-col mb-3">
-                                        <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Name" value="{{ old('username') }}" >
-                                        @error('username') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="firstname" class="form-control-label">Firstname</label>
+                                            <input type="text" name="firstname" class="form-control" placeholder="Firstname" aria-label="Firstname" value="{{ old('firstname') }}" >
+                                            @error('firstname') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                        </div>
                                     </div>
-                                    <div class="flex flex-col mb-3">
-                                        <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Name" value="{{ old('username') }}" >
-                                        @error('username') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="lastname" class="form-control-label">Lastname</label>
+                                            <input type="text" name="lastname" class="form-control" placeholder="Lastname" aria-label="Lastname" value="{{ old('lastname') }}" >
+                                            @error('lastname') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                        </div>
                                     </div>
-                                    <div class="flex flex-col mb-3">
-                                        <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Name" value="{{ old('username') }}" >
-                                        @error('username') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="username" class="form-control-label">TTL</label>
+                                            <input type="date" name="TTL" class="form-control" aria-label="TTL" value="{{ old('TTL') }}" >
+                                            @error('TTL') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                        </div>
                                     </div>
-                                    <div class="flex flex-col mb-3">
-                                        <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Name" value="{{ old('username') }}" >
-                                        @error('username') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="username" class="form-control-label">Gender</label>
+{{--                                            fallback to old value if validator failed--}}
+                                            <select type="gender" name="gender" class="form-control">
+                                                <option value="Male"  {{ old('gender') == 'Male' ? 'selected' : '' }}>
+                                                    Male
+                                                </option>
+                                                <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>
+                                                    Female
+                                                </option>
+                                            </select>
+                                            @error('gender') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                        </div>
                                     </div>
+{{--                                    ----------------------------}}
+                                    <hr class="horizontal dark">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="username" class="form-control-label">Username</label>
+                                            <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Name" value="{{ old('username') }}" >
+                                            @error('username') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="username" class="form-control-label">Username</label>
+                                            <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Name" value="{{ old('username') }}" >
+                                            @error('username') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="username" class="form-control-label">Username</label>
+                                            <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Name" value="{{ old('username') }}" >
+                                            @error('username') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="username" class="form-control-label">Username</label>
+                                            <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Name" value="{{ old('username') }}" >
+                                            @error('username') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                        </div>
+                                    </div>
+{{--                                    ----------------------------}}
+                                    <hr class="horizontal dark">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
