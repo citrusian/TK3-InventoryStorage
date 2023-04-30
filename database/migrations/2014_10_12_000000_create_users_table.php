@@ -1,0 +1,60 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+//        Schema::create('users', function (Blueprint $table) {
+//            $table->id();
+//            $table->string('firstname')->nullable();
+//            $table->string('lastname')->nullable();
+//            $table->enum('gender', ['Male', 'Female'])->nullable();
+//            $table->string('email')->unique();
+//            $table->string('username');
+//            $table->string('password');
+//            $table->string('profile_photo_path', 2048)->nullable();
+//            $table->rememberToken();
+//            $table->timestamps();
+//        });
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->enum('idtype', ['Admin', 'Customer'])->nullable();
+            $table->string('firstname')->nullable();
+            $table->string('lastname')->nullable();
+            $table->enum('gender', ['Male', 'Female'])->nullable();
+            $table->date('TTL')->nullable();
+
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
+            $table->string('postal')->nullable();
+
+            $table->string('profile_ktp_photo_path', 2048)->nullable();
+            $table->string('email')->unique();
+            $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('username');
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('users');
+    }
+};
