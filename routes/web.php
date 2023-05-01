@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/edituser', [EditProfileController::class, 'show'])->name('editeuser');
     Route::post('/edituser', [EditProfileController::class, 'updateuser'])->name('updateuser');
-    Route::post('/edituser2', [UserProfileController::class, 'updatektp'])->name('updatektp');
+    Route::post('/edituser2', [EditProfileController::class, 'updatektp'])->name('updatektp');
 
 //  page route must be placed below other
 	Route::get('/{page}', [PageController::class, 'index'])->name('page');
