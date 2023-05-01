@@ -4,23 +4,54 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 
 class EditProfileController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
-        return view('pages.edit-profile');
+        $userid = $request->get('postid');
+        Log::debug("testreq: ".$userid);
+        $postuser = DB::table('users')
+            ->where('id', $userid)
+            ->get([
+                'username',
+                'firstname',
+                'lastname',
+                'email',
+                'address',
+                'city',
+                'country',
+                'postal',
+                'TTL',
+                'gender',
+                'idtype',
+            ]);
+        Log::debug("$postuser: ".$postuser);
+//        return view('pages.edit-profile')->with('user',$userid)->with('userdata',$postuser);
+//        return view('pages.edit-profile')->with('user',$userid);
+//        return view('pages.edit-profile',['user' => $userid]);
+        return redirect('edit-profile')->with('user', $postuser);
     }
 
-    public function update(Request $request)
+    public function updateuser(Request $request)
     {
+        Log::debug("TTL: ".$request->get('TTL'));
+        Log::debug("gender: ".$request->get('gender'));
         $attributes = $request->validate([
             'username' => ['required','max:255', 'min:2'],
             'firstname' => ['max:100'],
             'lastname' => ['max:100'],
             'email' => ['required', 'email', 'max:255',  Rule::unique('users')->ignore(auth()->user()->id),],
             'address' => ['max:100'],
+            'city' => ['required'],
+            'country' => ['required'],
+            'postal' => ['required'],
+            'TTL' => ['required','date'],
+            'gender' => ['required'],
+            'idtype' => ['required'],
         ]);
 
         auth()->user()->update([
@@ -32,12 +63,15 @@ class EditProfileController extends Controller
             'city' => $request->get('city') ,
             'country' => $request->get('country') ,
             'postal' => $request->get('postal') ,
+            'TTL' => $request->get('TTL'),
+            'gender' => $request->get('gender'),
+            'idtype' => $request->get('idtype'),
         ]);
         return back()->with('succes', 'Profile succesfully updated');
     }
 
 
-    public function ktp(Request $request)
+    public function updatektp(Request $request)
     {
         // limit input
         $request->validate([
@@ -53,8 +87,8 @@ class EditProfileController extends Controller
         $curid = auth()->id();
         User::where('id',$curid)
             ->update([
-            'profile_ktp_photo_path' => $imageName,
-        ]);
+                'profile_ktp_photo_path' => $imageName,
+            ]);
 
         return back()
             ->with('succes', 'KTP succesfully updated')
@@ -101,6 +135,6 @@ class EditProfileController extends Controller
 
 
         return back()
-            ->with('succes','User Created');
+            ->with('succes','Succes! User Created!');
     }
 }

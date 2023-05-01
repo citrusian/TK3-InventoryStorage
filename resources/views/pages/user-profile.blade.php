@@ -101,7 +101,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">ID Type</label>
-                                                                                        fallback to old value if validator failed
+                                            {{--                                            fallback to old value if validator failed--}}
                                             <select type="idtype" name="idtype" class="form-control">
                                                 <option value="Admin" {{ old('idtype', Auth::user()->idtype) == 'Admin' ? 'selected' : '' }}>
                                                     Admin

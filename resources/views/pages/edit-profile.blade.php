@@ -7,11 +7,12 @@
     <div id="alert">
         @include('components.alert')
     </div>
+{{--    <img src="img/profile/{{ Session::get('image') }}" class="mb-2" style="width:400px;height:200px;">--}}
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
-                    <form role="form" method="POST" action={{ route('profile.update') }} enctype="multipart/form-data">
+                    <form role="form" method="POST" action={{ route('updateuser') }} enctype="multipart/form-data">
                         @csrf
                         <div class="card-header pb-0">
                             <div class="d-flex align-items-center">
@@ -21,12 +22,15 @@
                         </div>
                         <div class="card-body">
                             <p class="text-uppercase text-sm">User Information</p>
+                            post: "{{ Session('user') }}"
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Username</label>
                                         {{--                                        <input class="form-control" type="text" name="username" value="{{ old('username', auth()->user()->username) }}" disabled>--}}
-                                        <input class="form-control" type="text" name="username" value="{{ old('username', auth()->user()->username) }}" >
+{{--                                        <input class="form-control" type="text" name="username" value="{{ old('username', auth()->user()->username) }}" >--}}
+                                        <input class="form-control" type="text" name="username" value="{{ Session::get('user.1.username') }}" >
+{{--                                        <input class="form-control" type="text" name="username" value="{{ session('user')[1]['username'] }}" >--}}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -124,7 +128,7 @@
                                     <img src="img/profile/{{ Auth::user()->profile_ktp_photo_path }}" width="100%">
                                 </div>
                                 <div class="col-sm">
-                                    <form role="form" method="POST" action={{ route('profile_ktp') }} enctype="multipart/form-data">
+                                    <form role="form" method="POST" action={{ route('updatektp') }} enctype="multipart/form-data">
                                         @csrf
                                         <label class="form-label" for="inputImage">Select Image:</label>
                                         <input
@@ -174,16 +178,16 @@
                 </div>
             </div>
         </div>
-        <script>
-            var node;
-            {{--if({{ auth()->user()->email}} === 1) {--}}
-            if('{{ Auth::user()->idtype}}' === 'Admin') {
-                document.getElementById('Customer_View').style.display = "none"
-                document.getElementById('Customer_View2').style.display = "none"
-            }
-            else{
-            }
-        </script>
+        {{--        <script>--}}
+        {{--            var node;--}}
+        {{--            --}}{{--if({{ auth()->user()->email}} === 1) {--}}
+        {{--            if('{{ Auth::user()->idtype}}' === 'Admin') {--}}
+        {{--                document.getElementById('Customer_View').style.display = "none"--}}
+        {{--                document.getElementById('Customer_View2').style.display = "none"--}}
+        {{--            }--}}
+        {{--            else{--}}
+        {{--            }--}}
+        {{--        </script>--}}
     </div>
     {{--    @include('layouts.footers.auth.footer')--}}
 @endsection

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EditProfileController;
 use App\Http\Controllers\KTPUploadController;
 use App\Http\Controllers\RegisterBarangController;
 use Illuminate\Support\Facades\Route;
@@ -48,9 +49,9 @@ Route::post('upload-image', [ ImageUploadController::class, 'store' ])->name('im
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/profile', [UserProfileController::class, 'show'])->name('profile');
 	Route::post('/profile', [UserProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile2', [UserProfileController::class, 'ktp'])->name('profile_ktp');
 //    workaround: use unused url+rand if you want to use 2 invoke in one page
 //    eg: profile.update = invoke1, profile_ktp = invoke2
-    Route::post('/profile2', [UserProfileController::class, 'ktp'])->name('profile_ktp');
 
     Route::get('/itemData', [PageController::class, 'itemData'])->name('itemData');
     Route::get('/transactionData', [PageController::class, 'transactionData'])->name('transactionData');
@@ -63,6 +64,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/registerbarang', [RegisterBarangController::class, 'create'])->name('registerbarang');
     Route::post('/registerbarang', [RegisterBarangController::class, 'store'])->name('registerbarang.perform');
+
+    Route::get('/edituser', [EditProfileController::class, 'show'])->name('editeuser');
+    Route::post('/edituser', [EditProfileController::class, 'updateuser'])->name('updateuser');
+    Route::post('/edituser2', [UserProfileController::class, 'updatektp'])->name('updatektp');
 
 //  page route must be placed below other
 	Route::get('/{page}', [PageController::class, 'index'])->name('page');

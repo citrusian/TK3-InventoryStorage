@@ -84,8 +84,20 @@
                                     </td>
                                     <td class="Action align-middle text-center text-wrap"  style="width: 10%;">
                                         <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                                            <p class="text-sm font-weight-bold mb-0">Edit</p>
-                                            <p class="text-sm font-weight-bold mb-0 ps-2">Delete</p>
+{{--                                            <p class="text-sm font-weight-bold mb-0">Edit</p>--}}
+{{--                                            <p class="text-sm font-weight-bold mb-0"><a href="edituser">Edit</a></p>--}}
+                                            <form role="form" method="GET" action={{ route('editeuser') }} enctype="multipart/form-data">
+                                                @csrf
+                                                <div id='HiddenView' style="display: none;">
+                                                    <input class="form-control" type="text" name="postid" value="{{ $query->id }}" >
+                                                </div>
+                                                <div class="card-header pb-0">
+                                                    <button type="submit" class="">Edit</button>
+                                                </div>
+
+                                            </form>
+{{--                                            <p class="text-sm font-weight-bold mb-0 ps-2">Delete</p>--}}
+{{--                                            <p class="text-sm font-weight-bold mb-0 ps-2"><a href="edituser">Delete</a></p>--}}
                                         </div>
                                     </td>
                                 </tr>
