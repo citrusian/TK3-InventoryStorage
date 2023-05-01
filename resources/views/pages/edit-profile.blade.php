@@ -23,6 +23,9 @@
                         $user = DB::table('users')->where('id',session('user'))->get();
                         ?>
 
+                        <div id='HiddenView' style="display: none;">
+                            <input class="form-control" type="text" name="postid" value="{{ $user[0]->id }}" >
+                        </div>
                         <div class="card-body">
                             <p class="text-uppercase text-sm">User Information</p>
                             <div class="row">

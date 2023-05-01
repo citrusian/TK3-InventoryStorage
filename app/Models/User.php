@@ -28,7 +28,6 @@ class User extends Authenticatable
         'city',
         'country',
         'postal',
-        'about',
         'TTL',
         'gender',
         'idtype',

@@ -45,6 +45,9 @@ class UserProfileController extends Controller
             'gender' => $request->get('gender'),
             'idtype' => $request->get('idtype'),
         ]);
+
+//        ?? why this code doesn't work??
+//        $user = User::update($attributes);
         return back()->with('succes', 'Profile succesfully updated');
     }
 

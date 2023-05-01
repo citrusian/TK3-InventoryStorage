@@ -22,13 +22,25 @@ class EditProfileController extends Controller
 
     public function updateuser(Request $request)
     {
+        Log::debug("postid: ".$request->get('postid'));
+        Log::debug("username: ".$request->get('username'));
+        Log::debug("firstname: ".$request->get('firstname'));
+        Log::debug("lastname: ".$request->get('lastname'));
+        Log::debug("email: ".$request->get('email'));
+        Log::debug("address: ".$request->get('address'));
+        Log::debug("city: ".$request->get('city'));
+        Log::debug("country: ".$request->get('country'));
+        Log::debug("postal: ".$request->get('postal'));
         Log::debug("TTL: ".$request->get('TTL'));
         Log::debug("gender: ".$request->get('gender'));
+        Log::debug("idtype: ".$request->get('idtype'));
+        $curid = $request->get('postid');
+        $user = DB::table('users')->where('id',$curid)->get();
         $attributes = $request->validate([
             'username' => ['required','max:255', 'min:2'],
             'firstname' => ['max:100'],
             'lastname' => ['max:100'],
-            'email' => ['required', 'email', 'max:255',  Rule::unique('users')->ignore(auth()->user()->id),],
+            'email' => ['required', 'email', 'max:255',  Rule::unique('users')->ignore($user[0]->id),],
             'address' => ['max:100'],
             'city' => ['required'],
             'country' => ['required'],
@@ -38,7 +50,8 @@ class EditProfileController extends Controller
             'idtype' => ['required'],
         ]);
 
-        auth()->user()->update([
+        User::where('id',$curid)
+            ->update([
             'username' => $request->get('username'),
             'firstname' => $request->get('firstname'),
             'lastname' => $request->get('lastname'),
@@ -51,6 +64,7 @@ class EditProfileController extends Controller
             'gender' => $request->get('gender'),
             'idtype' => $request->get('idtype'),
         ]);
+        Session::put('user', $curid);
         return back()->with('succes', 'Profile succesfully updated');
     }
 

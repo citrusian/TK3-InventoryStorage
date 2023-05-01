@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EditItemController;
 use App\Http\Controllers\EditProfileController;
 use App\Http\Controllers\KTPUploadController;
 use App\Http\Controllers\RegisterBarangController;
@@ -68,6 +69,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/edituser', [EditProfileController::class, 'show'])->name('editeuser');
     Route::post('/edituser', [EditProfileController::class, 'updateuser'])->name('updateuser');
     Route::post('/edituser2', [EditProfileController::class, 'updatektp'])->name('updatektp');
+
+    Route::get('/edititem', [EditItemController::class, 'show'])->name('edititem');
+    Route::post('/edititem', [EditItemController::class, 'updateitem'])->name('updateitem');
+//    Route::post('/edititem2', [EditItemController::class, 'updateimage'])->name('updateimage');
 
 //  page route must be placed below other
 	Route::get('/{page}', [PageController::class, 'index'])->name('page');
