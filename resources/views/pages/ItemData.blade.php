@@ -9,6 +9,21 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
+                    <h6>Action</h6>
+                </div>
+
+
+                <div class="card-body px-0 pt-0 pb-2">
+                    <form role="form" method="GET" action={{ route('show_new') }} enctype="multipart/form-data">
+                        @csrf
+                        <div class="card-header pb-0">
+                            <button type="submit" class="btn btn-primary btn-sm ms-auto">New Item</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header pb-0">
                     <h6>Item List</h6>
                 </div>
 

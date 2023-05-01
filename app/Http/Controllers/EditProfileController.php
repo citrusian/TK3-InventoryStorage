@@ -4,32 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 
-class UserProfileController extends Controller
+class EditProfileController extends Controller
 {
     public function show()
     {
-        return view('pages.user-profile');
+        return view('pages.edit-profile');
     }
 
     public function update(Request $request)
     {
-        Log::debug("TTL: ".$request->get('TTL'));
-        Log::debug("gender: ".$request->get('gender'));
         $attributes = $request->validate([
             'username' => ['required','max:255', 'min:2'],
             'firstname' => ['max:100'],
             'lastname' => ['max:100'],
             'email' => ['required', 'email', 'max:255',  Rule::unique('users')->ignore(auth()->user()->id),],
             'address' => ['max:100'],
-            'city' => ['required'],
-            'country' => ['required'],
-            'postal' => ['required'],
-            'TTL' => ['required','date'],
-            'gender' => ['required'],
-            'idtype' => ['required'],
         ]);
 
         auth()->user()->update([
@@ -41,9 +32,6 @@ class UserProfileController extends Controller
             'city' => $request->get('city') ,
             'country' => $request->get('country') ,
             'postal' => $request->get('postal') ,
-            'TTL' => $request->get('TTL'),
-            'gender' => $request->get('gender'),
-            'idtype' => $request->get('idtype'),
         ]);
         return back()->with('succes', 'Profile succesfully updated');
     }
@@ -113,6 +101,6 @@ class UserProfileController extends Controller
 
 
         return back()
-            ->with('succes','Succes! User Created!');
+            ->with('succes','User Created');
     }
 }

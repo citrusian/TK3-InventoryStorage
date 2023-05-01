@@ -27,10 +27,12 @@ return new class extends Migration
 //        });
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->enum('idtype', ['Admin', 'Customer'])->nullable();
+//            $table->enum('idtype', ['Admin', 'Customer'])->nullable();
+            $table->string('idtype')->nullable();
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
-            $table->enum('gender', ['Male', 'Female'])->nullable();
+//            $table->enum('gender', ['Male', 'Female'])->nullable();
+            $table->string('gender')->nullable();
             $table->date('TTL')->nullable();
 
             $table->string('address')->nullable();

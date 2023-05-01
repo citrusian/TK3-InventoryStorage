@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Traits\DebugToConsole;
 
-class RegisterController extends Controller
+class RegisterBarangController extends Controller
 {
     use DebugToConsole;
     public function create()
@@ -46,7 +46,6 @@ class RegisterController extends Controller
             'postal' => 'required|numeric',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
 //            'profile_ktp_photo_path' => $imageName,
-            'idtype' => 'required',
         ]);
 
         $user = User::create($attributes);
@@ -58,7 +57,6 @@ class RegisterController extends Controller
             ->where('id', $curid)
             ->update([
                 'profile_ktp_photo_path' =>  $imageName,
-                'profile_photo_path' =>  '/img/profile/team-3.jpg',
             ]);
         Log::debug("currid: ".$customer);
 

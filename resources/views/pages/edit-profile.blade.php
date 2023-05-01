@@ -1,9 +1,9 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Your Profile'])
-{{--    <div class="card shadow-lg mx-4 card-profile-bottom">--}}
-{{--    </div>--}}
+    @include('layouts.navbars.auth.topnav', ['title' => 'Edit Profile'])
+    {{--    <div class="card shadow-lg mx-4 card-profile-bottom">--}}
+    {{--    </div>--}}
     <div id="alert">
         @include('components.alert')
     </div>
@@ -25,14 +25,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Username</label>
-{{--                                        <input class="form-control" type="text" name="username" value="{{ old('username', auth()->user()->username) }}" disabled>--}}
+                                        {{--                                        <input class="form-control" type="text" name="username" value="{{ old('username', auth()->user()->username) }}" disabled>--}}
                                         <input class="form-control" type="text" name="username" value="{{ old('username', auth()->user()->username) }}" >
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Email address</label>
-{{--                                        <input class="form-control" type="email" name="email" value="{{ old('email', auth()->user()->email) }}" disabled>--}}
+                                        {{--                                        <input class="form-control" type="email" name="email" value="{{ old('email', auth()->user()->email) }}" disabled>--}}
                                         <input class="form-control" type="email" name="email" value="{{ old('email', auth()->user()->email) }}">
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Address</label>
                                             <input class="form-control" type="text" name="address"
-                                                value="{{ old('address', auth()->user()->address) }}">
+                                                   value="{{ old('address', auth()->user()->address) }}">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -101,7 +101,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">ID Type</label>
-                                                                                        fallback to old value if validator failed
+                                            fallback to old value if validator failed
                                             <select type="idtype" name="idtype" class="form-control">
                                                 <option value="Admin" {{ old('idtype', Auth::user()->idtype) == 'Admin' ? 'selected' : '' }}>
                                                     Admin
@@ -153,10 +153,10 @@
                         <div class="col-4 col-lg-4 order-lg-2">
                             <div class="mt-n4 mt-lg-n6 mb-4 mb-lg-0">
                                 <a href="javascript:;">
-{{--                                    <img src="/img/profile/team-3.jpg"--}}
-{{--                                    <img src="{{ Auth::user()->profile_photo_path }}"--}}
+                                    {{--                                    <img src="/img/profile/team-3.jpg"--}}
+                                    {{--                                    <img src="{{ Auth::user()->profile_photo_path }}"--}}
                                     <img src="{{ Auth::user()->profile_photo_path }}"
-                                        class="rounded-circle img-fluid border border-2 border-white">
+                                         class="rounded-circle img-fluid border border-2 border-white">
                                 </a>
                             </div>
                         </div>
@@ -185,5 +185,5 @@
             }
         </script>
     </div>
-{{--    @include('layouts.footers.auth.footer')--}}
+    {{--    @include('layouts.footers.auth.footer')--}}
 @endsection

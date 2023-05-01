@@ -28,7 +28,10 @@ class User extends Authenticatable
         'city',
         'country',
         'postal',
-        'about'
+        'about',
+        'TTL',
+        'gender',
+        'idtype',
     ];
 
     /**
@@ -49,6 +52,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'TTL' => 'date',
     ];
 
     /**
