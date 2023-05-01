@@ -14,7 +14,7 @@
 
 
                 <div class="card-body px-0 pt-0 pb-2">
-                    <form role="form" method="GET" action={{ route('show_new') }} enctype="multipart/form-data">
+                    <form role="form" method="GET" action={{ route('registerbarang') }} enctype="multipart/form-data">
                         @csrf
                         <div class="card-header pb-0">
                             <button type="submit" class="btn btn-primary btn-sm ms-auto">New Item</button>

@@ -8,16 +8,6 @@
     {{--    <main class="main-content  mt-0">--}}
     <div class="page-header align-items-start pt-5 pb-11 m-3 border-radius-lg"
     >
-        {{--            <span class="mask bg-gradient-dark opacity-6"></span>--}}
-        {{--            <div class="container">--}}
-        {{--                <div class="row justify-content-center">--}}
-        {{--                    <div class="col-lg-5 text-center mx-auto">--}}
-        {{--                        <h1 class="text-white mb-2 mt-5">Welcome!</h1>--}}
-        {{--                        <p class="text-lead text-white">Use these awesome forms to login or create new account in your--}}
-        {{--                            project for free.</p>--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
     </div>
     {{--        <div class="container">--}}
     <div class="container-fluid py-4"style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signup-cover.jpg'); background-position: top;">
@@ -29,36 +19,47 @@
                         <h5>Input Barang</h5>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register.perform') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('registerbarang.perform') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <p class="text-uppercase text-sm">User Information</p>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="username" class="form-control-label">Username</label>
-                                        <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Name" value="{{ old('username') }}" >
-                                        @error('username') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                        <label for="Nama" class="form-control-label">Nama</label>
+                                        <input type="text" name="Nama" class="form-control" placeholder="Obat tralala" aria-label="Nama" value="{{ old('Nama') }}" >
+                                        @error('Nama') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="email" class="form-control-label">Email address</label>
-                                        <input type="email" name="email" class="form-control" placeholder="Email" aria-label="Email" value="{{ old('email') }}" >
-                                        @error('email') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                        <label for="Deskripsi" class="form-control-label">Deskripsi</label>
+                                        <input type="text" name="Deskripsi" class="form-control" placeholder="Deskripsi Obat" aria-label="Deskripsi" value="{{ old('Deskripsi') }}" >
+                                        @error('Deskripsi') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="password" class="form-control-label">Password</label>
-                                        <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password">
-                                        @error('password') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                        <label for="Jenis" class="form-control-label">Jenis Obat</label>
+                                        {{--                                            fallback to old value if validator failed--}}
+                                        <select type="Jenis" name="Jenis" class="form-control">
+                                            <option value="Obat Batuk & Pilek"  {{ old('Jenis') == 'Admin' ? 'selected' : '' }}>
+                                                Obat Batuk & Pilek
+                                            </option>
+                                            <option value="Obat Sakit Gigi" {{ old('Jenis') == 'Customer' ? 'selected' : '' }}>
+                                                Obat Sakit Gigi
+                                            </option>
+                                            <option value="Obat Diare" {{ old('Jenis') == 'Customer' ? 'selected' : '' }}>
+                                                Obat Diare
+                                            </option>
+                                        </select>
+                                        @error('Jenis') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="confirm-password" class="form-control-label">Password Confirmation</label>
-                                        <input type="password" name="confirm-password" class="form-control form-control-lg" placeholder="Password Confirmation" aria-label="Password"  >
-                                        @error('confirm-password') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
+                                        <label for="Stok" class="form-control-label">Stok</label>
+                                        <input type="number" max="800"  name="Stok" class="form-control" placeholder="50" aria-label="Stok" value="{{ old('Stok') }}" >
+                                        @error('Stok') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
                                     </div>
                                 </div>
                                 {{--                                    ----------------------------}}
@@ -66,97 +67,30 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="firstname" class="form-control-label">Firstname</label>
-                                        <input type="text" name="firstname" class="form-control" placeholder="Firstname" aria-label="Firstname" value="{{ old('firstname') }}" >
-                                        @error('firstname') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                        <label for="Harga_Beli" class="form-control-label">Harga Beli</label>
+                                        <input type="number" name="Harga_Beli" class="form-control" placeholder="50" aria-label="Harga_Beli" value="{{ old('Harga_Beli') }}" >
+                                        @error('Harga_Beli') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="lastname" class="form-control-label">Lastname</label>
-                                        <input type="text" name="lastname" class="form-control" placeholder="Lastname" aria-label="Lastname" value="{{ old('lastname') }}" >
-                                        @error('lastname') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="username" class="form-control-label">TTL</label>
-                                        <input type="date" name="TTL" class="form-control" aria-label="TTL" value="{{ old('TTL') }}" >
-                                        @error('TTL') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="gender" class="form-control-label">Gender</label>
-                                        {{--                                            fallback to old value if validator failed--}}
-                                        <select type="gender" name="gender" class="form-control">
-                                            <option value="Male"  {{ old('gender') == 'Male' ? 'selected' : '' }}>
-                                                Male
-                                            </option>
-                                            <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>
-                                                Female
-                                            </option>
-                                        </select>
-                                        @error('gender') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="idtype" class="form-control-label">ID Type</label>
-                                        {{--                                            fallback to old value if validator failed--}}
-                                        <select type="idtype" name="idtype" class="form-control">
-                                            <option value="Admin"  {{ old('idtype') == 'Admin' ? 'selected' : '' }}>
-                                                Admin
-                                            </option>
-                                            <option value="Customer" {{ old('idtype') == 'Customer' ? 'selected' : '' }}>
-                                                Customer
-                                            </option>
-                                        </select>
-                                        @error('idtype') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
+                                        <label for="Harga_Jual" class="form-control-label">Harga_Jual</label>
+                                        <input type="number" name="Harga_Jual" class="form-control" placeholder="50" aria-label="Harga_Jual" value="{{ old('Harga_Jual') }}" >
+                                        @error('Harga_Jual') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
                                     </div>
                                 </div>
                                 {{--                                    ----------------------------}}
                                 <hr class="horizontal dark">
-
-                                <p class="text-uppercase text-sm">Contact Information</p>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="address" class="form-control-label">Address</label>
-                                        <input type="text" name="address" class="form-control" placeholder="Monumen Nasional, Jalan Tugu Monas, RT.5/RW.2, Gambir, Kecamatan Gambir, Kota Jakarta Pusat" aria-label="Address" value="{{ old('address') }}" >
-                                        @error('address') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="city" class="form-control-label">City</label>
-                                        <input type="text" name="city" class="form-control" placeholder="Jakarta" aria-label="City" value="{{ old('city') }}" >
-                                        @error('city') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="country" class="form-control-label">Country</label>
-                                        <input type="text" name="country" class="form-control" placeholder="Indonesia" aria-label="Country" value="{{ old('country') }}" >
-                                        @error('country') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="postal" class="form-control-label">Zip Code</label>
-                                        <input type="tel" maxlength="8"  name="postal" class="form-control" placeholder="10110" aria-label="Zip Code" value="{{ old('postal') }}" >
-                                        @error('postal') <p class='text-danger text-xs pt-1'> {{ $message }} </p> @enderror
-                                    </div>
-                                </div>
                                 {{--                                    ----------------------------}}
                                 <hr class="horizontal dark">
 
 
                                 <div class="card-body">
-                                    <p class="text-uppercase text-sm">Foto KTP</p>
+                                    <p class="text-uppercase text-sm">Foto Barang</p>
                                     <div class="row">
                                         <div class="col-sm text-center">
                                             Contoh Foto
-                                            <img src="img/profile/0-KTP-Example.jpg" width="100%">
+                                            <img src="img/barang/0-Obat-Example.png" width="100%">
                                         </div>
                                         <div class="col-sm">
                                             <label class="form-label" for="inputImage">Select Image:</label>
@@ -185,7 +119,7 @@
                                     @error('terms') <p class='text-danger text-xs'> {{ $message }} </p> @enderror
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
+                                    <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Add Item</button>
                                 </div>
                             </div>
                         </form>

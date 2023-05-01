@@ -20,6 +20,30 @@ class DataBarang extends Model
         'Stok',
         'Harga_Beli',
         'Harga_Jual',
-        'image',
     ];
+
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+    protected $appends = [
+        'profile_photo_url',
+    ];
+
+    public function getHasAdmin()
+    {
+        return $this->attributes['idtype'];
+    }
+
+
+
+
+
+
+
+
+
+
 }

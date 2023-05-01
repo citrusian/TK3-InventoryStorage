@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 // use App\Http\Requests\RegisterRequest;
+use App\Models\DataBarang;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,54 +15,50 @@ class RegisterBarangController extends Controller
     use DebugToConsole;
     public function create()
     {
-        return view('auth.register');
+        return view('auth.registerbarang');
     }
 
     public function store(Request $request)
     {
 
 //        $curid = User::where('id')->count();
-        $curid = DB::table('Users')->count();
+        $curid = DB::table('data_barangs')->count();
         $curid +=1;
 
-        Log::debug("currid: ".$curid);
+        Log::debug("curridbar: ".$curid);
+        Log::debug("Nama: ".$request->get('Nama'));
+        Log::debug("Deskripsi: ".$request->get('Deskripsi'));
+        Log::debug("Jenis: ".$request->get('Jenis'));
+        Log::debug("Stok: ".$request->get('Stok'));
+        Log::debug("Harga_Beli: ".$request->get('Harga_Beli'));
+        Log::debug("Harga_Jual: ".$request->get('Harga_Jual'));
 
 
         $attributes = request()->validate([
-            'username' => 'required|max:255|min:2',
-            'email' => 'required|email|max:255|unique:users,email',
-//            'password' => 'required|min:5|max:255|confirmed',
-//            Note: Using confirmed doesn't show alert message at confirmation input field
-//            workaround: create "confirm-password' field
-            'password' => 'required|min:5|max:255',
-            'confirm-password' => 'same:password',
-            'terms' => 'required',
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'TTL' => 'required',
-            'gender' => 'required',
-            'address' => 'required',
-            'city' => 'required',
-            'country' => 'required',
-            'postal' => 'required|numeric',
+            'Nama' => 'required|max:255|min:2',
+            'Deskripsi' => 'required|max:255|min:2',
+            'Jenis' => 'required',
+            'Stok' => 'required',
+            'Harga_Beli' => 'required',
+            'Harga_Jual' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
-//            'profile_ktp_photo_path' => $imageName,
         ]);
+//        Log::debug("attr: ".[$attributes);
 
-        $user = User::create($attributes);
+        $user = DataBarang::create($attributes);
 
-        $imageName = $curid.'-KTP'.'.'.$request->image->extension();
-        $request->image->move(public_path('img/profile'), $imageName);
+        $imageName = $curid.'-Obat'.'.'.$request->image->extension();
+        $request->image->move(public_path('img/barang'), $imageName);
 
-        $customer = DB::table('users')
+        $barang = DB::table('data_barangs')
             ->where('id', $curid)
             ->update([
-                'profile_ktp_photo_path' =>  $imageName,
+                'image' =>  $imageName,
             ]);
-        Log::debug("currid: ".$customer);
+        Log::debug("curridbar: ".$barang);
 
         return back()
-            ->with('succes','User Created')
+            ->with('succes','Succes! Item Added!')
             ->with('image',$imageName);
     }
 }

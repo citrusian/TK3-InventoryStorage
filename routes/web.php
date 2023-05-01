@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KTPUploadController;
+use App\Http\Controllers\RegisterBarangController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
@@ -60,8 +61,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/register', [RegisterController::class, 'create'])->name('register');
     Route::post('/register', [RegisterController::class, 'store'])->name('register.perform');
 
-    Route::get('/register', [RegisterController::class, 'create'])->name('register');
-    Route::post('/register', [RegisterController::class, 'store'])->name('register.perform');
+    Route::get('/registerbarang', [RegisterBarangController::class, 'create'])->name('registerbarang');
+    Route::post('/registerbarang', [RegisterBarangController::class, 'store'])->name('registerbarang.perform');
 
 //  page route must be placed below other
 	Route::get('/{page}', [PageController::class, 'index'])->name('page');
