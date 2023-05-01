@@ -174,16 +174,16 @@
                 </div>
             </div>
         </div>
-        <script>
-            var node;
-            {{--if({{ auth()->user()->email}} === 1) {--}}
-            if('{{ Auth::user()->idtype}}' === 'Admin') {
-                document.getElementById('Customer_View').style.display = "none"
-                document.getElementById('Customer_View2').style.display = "none"
-            }
-            else{
-            }
-        </script>
+{{--        <script>--}}
+{{--            var node;--}}
+{{--            --}}{{--if({{ auth()->user()->email}} === 1) {--}}
+{{--            if('{{ Auth::user()->idtype}}' === 'Admin') {--}}
+{{--                document.getElementById('Customer_View').style.display = "none"--}}
+{{--                document.getElementById('Customer_View2').style.display = "none"--}}
+{{--            }--}}
+{{--            else{--}}
+{{--            }--}}
+{{--        </script>--}}
     </div>
 {{--    @include('layouts.footers.auth.footer')--}}
 @endsection
